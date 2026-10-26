@@ -1,0 +1,7 @@
+.statement { padding-block: clamp(64px, 18vh, 200px); }
+.inner { row-gap: clamp(36px, 6vh, 64px); }
+.title { grid-column: 1 / 11; max-width: 20ch; }
+.lead { grid-column: 7 / 12; max-width: 44ch; }
+@media (max-width: 860px) {
+  .title, .lead { grid-column: 1 / -1; }
+}

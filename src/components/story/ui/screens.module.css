@@ -1,0 +1,187 @@
+/* =========================================================
+   The example business's screens (inside the 3D devices).
+   Every value is in the screen's own design pixels (phone 390 × 844,
+   browser and laptop 1280 × 800, ticket 300 × 168). Screen.tsx lays
+   them out with CSS zoom at their real on-screen size and sets --z (the
+   zoom) and data-size (s < 0.45 ≤ m < 0.7 ≤ l). No text is ever smaller
+   than 12 real px: every font size is max(design, var(--min)).
+   State comes in as CSS variables.
+   ========================================================= */
+.phone, .site, .ticket, .dash { --min: calc(12px / var(--z, 1)); }
+
+/* ---------- shared ---------- */
+.media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.mph { position: absolute; inset: 0; display: grid; place-items: center; overflow: hidden; }
+.mph_green { background: radial-gradient(120% 90% at 70% 20%, #2f4a3a 0%, var(--mf-green) 55%, #17241c 100%); color: var(--mf-brass); }
+.mph_blush { background: radial-gradient(120% 90% at 30% 20%, #f3e2d8 0%, var(--mf-blush) 60%, #d9bcae 100%); color: #9b7a56; }
+.mph_cream { background: radial-gradient(120% 90% at 50% 10%, #fffaf2 0%, var(--mf-cream) 60%, #e6dccd 100%); color: var(--mf-brass); }
+/* designed placeholder (G7): the salon's colours, its brass M&F monogram at 18% and a fine grain; never a slot name */
+.mph::after { content: ""; position: absolute; inset: 0; opacity: 0.22; mix-blend-mode: overlay; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.mphArt { position: relative; z-index: 1; font-family: var(--sans); font-weight: 600; letter-spacing: -0.04em; font-size: 22cqmin; line-height: 1; color: var(--mf-brass); opacity: 0.18; }
+.mph { container-type: size; }
+
+/* ---------- phone ---------- */
+.phone {
+  --feed: 0; --tap: 0; --site: 0; --chat: 0; --msg: 0; --typing: 0;
+  position: relative; width: 390px; height: 844px; overflow: hidden; border-radius: 44px;
+  background: #111110; color: var(--ivory); font-family: var(--sans); font-size: max(15px, var(--min)); line-height: 1.35;
+  -webkit-font-smoothing: antialiased;
+}
+.phone[data-mode="ad"] { --feed: 1; }
+.phone[data-mode="chat"] { --site: 1; --chat: 1; --msg: 4; }
+.phone[data-mode="empty"] { --chat: 1; }
+.status { position: absolute; z-index: 9; left: 0; right: 0; top: 0; height: 50px; display: flex; align-items: center; justify-content: space-between; padding: 0 30px; font-weight: 600; font-size: max(15px, var(--min)); color: var(--ivory); mix-blend-mode: difference; }
+.statusIcons { display: flex; gap: 5px; } .statusIcons i { width: 17px; height: 10px; border-radius: 3px; background: currentColor; opacity: 0.85; }
+.statusIcons i:first-child { width: 12px; } .statusIcons i:last-child { width: 24px; }
+.layer { position: absolute; inset: 0; }
+
+/* feed */
+.feedLayer { opacity: calc(1 - var(--site)); }
+.feedTop { position: relative; z-index: 2; height: 98px; padding: 54px 18px 0; display: flex; justify-content: space-between; background: #111110; }
+.feedTop b { font-size: max(22px, var(--min)); font-weight: 600; letter-spacing: -0.03em; }
+.feedIcons { display: flex; gap: 14px; } .feedIcons i { width: 22px; height: 22px; border-radius: 7px; border: 2px solid rgba(243, 238, 230, 0.5); }
+.feedScroll { position: absolute; left: 0; right: 0; top: 98px; transform: translateY(calc(var(--feed) * var(--feed-shift, 590px) * -1)); }
+.stories { display: flex; gap: 12px; padding: 8px 16px 18px; } .stories i { width: 58px; height: 58px; flex: none; border-radius: 50%; background: #2a2926; box-shadow: 0 0 0 2px #111110, 0 0 0 3.5px #3a3833; }
+.post { padding: 0 0 18px; }
+.postHead { display: flex; align-items: center; gap: 10px; padding: 0 16px 10px; }
+.avatar { width: 34px; height: 34px; flex: none; border-radius: 50%; }
+.postMedia { height: 300px; }
+.postLines { display: grid; gap: 7px; flex: 1; padding: 10px 16px 0; } .postHead .postLines { padding: 0; }
+.postLines i { display: block; height: 9px; border-radius: 5px; background: #2a2926; }
+
+/* the ad */
+.ad { padding-bottom: 20px; background: #111110; }
+.adHead { display: flex; align-items: center; gap: 10px; padding: 0 16px 10px; }
+.adAvatar { width: 36px; height: 36px; flex: none; display: grid; place-items: center; border-radius: 50%; background: var(--mf-green); color: var(--mf-cream); font-size: max(11px, var(--min)); font-weight: 600; letter-spacing: 0.02em; }
+.adWho { display: grid; line-height: 1.2; } .adWho b { font-size: max(14px, var(--min)); font-weight: 600; } .adWho small { font-size: max(12px, var(--min)); color: var(--mist); }
+.adMedia { position: relative; aspect-ratio: 4 / 5; overflow: hidden; }
+.adLine { padding: 12px 16px 0; font-size: max(16px, var(--min)); font-weight: 500; letter-spacing: -0.01em; }
+.adCta { position: relative; margin: 12px 16px 0; height: 46px; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; border-radius: 10px; background: var(--mf-green); color: var(--mf-cream); font-weight: 600; overflow: hidden; }
+.ripple { position: absolute; left: 50%; top: 50%; width: 80px; height: 80px; margin: -40px 0 0 -40px; border-radius: 50%; border: 2px solid var(--mf-cream); opacity: calc((1 - var(--tap)) * min(1, var(--tap) * 8)); transform: scale(calc(var(--tap) * 1.6)); }
+
+/* the salon's mobile site */
+.siteLayer { opacity: calc(var(--site) * (1 - var(--chat))); transform: translateY(calc((1 - var(--site)) * 30px)); }
+.mSite { position: absolute; inset: 0; background: var(--mf-cream); color: var(--mf-green); }
+.mNav { height: 98px; padding: 56px 20px 0; display: flex; justify-content: space-between; background: var(--mf-green); color: var(--mf-cream); }
+.mNav b { font-size: max(17px, var(--min)); font-weight: 600; letter-spacing: -0.02em; }
+.mBurger { display: grid; gap: 6px; padding-top: 4px; } .mBurger i { width: 22px; height: 2px; background: currentColor; }
+.mHero { position: relative; height: 330px; overflow: hidden; }
+.mBody { padding: 22px 20px; }
+.mTitle { font-size: max(38px, var(--min)); line-height: 0.98; font-weight: 500; letter-spacing: -0.04em; }
+.mSub { margin-top: 10px; font-size: max(15px, var(--min)); color: #4a5a4f; }
+.mBtn { display: inline-flex; margin-top: 16px; height: 46px; align-items: center; padding: 0 20px; border-radius: 10px; background: var(--mf-brass); color: #fff; font-weight: 600; }
+.mList { margin-top: 20px; display: grid; gap: 0; border-top: 1px solid rgba(35, 54, 43, 0.15); }
+.mList li { display: flex; justify-content: space-between; align-items: baseline; padding: 11px 0; border-bottom: 1px solid rgba(35, 54, 43, 0.15); }
+.mList b { font-weight: 600; } .mList small { font-size: max(12.5px, var(--min)); color: #5b6a60; }
+
+/* chat */
+.chatLayer { opacity: var(--chat); }
+.chat { position: absolute; inset: 0; display: flex; flex-direction: column; background: var(--mf-cream); color: var(--ink); }
+.chatHead { display: flex; align-items: center; gap: 10px; height: 112px; padding: 56px 16px 0; background: var(--mf-green); color: var(--mf-cream); }
+.chatWho { display: grid; line-height: 1.25; } .chatWho b { font-size: max(15px, var(--min)); font-weight: 600; } .chatWho small { display: flex; align-items: center; gap: 6px; font-size: max(12px, var(--min)); opacity: 0.8; }
+.online { width: 7px; height: 7px; border-radius: 50%; background: #7fbf7a; }
+/* messages sit at the bottom like a real chat: each new one pushes the earlier ones up (and off the
+   top when the screen is small); a message that hasn't arrived takes no space */
+.chatBody { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 4px 14px 14px; overflow: hidden; }
+.msgCustomer, .msgAgent {
+  --in: clamp(0, calc(var(--msg) - var(--i)), 1);
+  flex: none; max-width: 80%; padding: 10px 13px 8px; border-radius: 18px; font-size: max(15px, var(--min)); line-height: 1.35;
+  margin-top: calc(var(--in) * 10px); max-height: calc(var(--in) * 40em); overflow: hidden;
+  opacity: clamp(0, calc((var(--msg) - var(--i)) * 1.5), 1);
+  transform: translateY(calc((1 - var(--in)) * 14px));
+}
+.msgCustomer { align-self: flex-end; background: var(--mf-green); color: var(--mf-cream); border-bottom-right-radius: 6px; }
+.msgAgent { align-self: flex-start; background: #fff; color: var(--ink); border-bottom-left-radius: 6px; box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05); }
+.msgCustomer small, .msgAgent small { display: block; margin-top: 3px; font-size: max(10.5px, var(--min)); opacity: 0.6; text-align: right; }
+.typing { flex: none; align-self: flex-start; display: flex; gap: 4px; padding: 0 14px; border-radius: 18px; background: #fff; opacity: var(--typing); max-height: calc(var(--typing) * 40px); margin-top: calc(var(--typing) * 10px); overflow: hidden; }
+.typing::before { content: ""; height: 31px; }
+.typing i { align-self: center; }
+.typing i { width: 7px; height: 7px; border-radius: 50%; background: #9a978d; animation: dot 1s infinite; }
+.typing i:nth-child(2) { animation-delay: 0.15s; } .typing i:nth-child(3) { animation-delay: 0.3s; }
+@keyframes dot { 0%, 60%, 100% { transform: none; opacity: 0.5; } 30% { transform: translateY(-3px); opacity: 1; } }
+.chatEmpty { margin: auto; color: #8a877e; font-size: max(15px, var(--min)); }
+.chatInput { margin: 0 12px 30px; height: 46px; padding: 0 8px 0 16px; display: flex; align-items: center; justify-content: space-between; border-radius: 23px; background: #fff; color: #9a978d; }
+.chatInput i { width: 32px; height: 32px; border-radius: 50%; background: var(--mf-green); }
+
+/* ---------- the salon's desktop site, in four separable layers (1280 × 800) ---------- */
+.site { position: relative; width: 1280px; height: 800px; font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+.siteBg { background: var(--mf-green); color: var(--mf-cream); overflow: hidden; border-radius: 0 0 10px 10px; }
+.siteNav { position: absolute; z-index: 2; left: 0; right: 0; top: 0; height: 84px; padding: 0 56px; display: flex; align-items: center; justify-content: space-between; }
+.siteNav b { font-size: max(22px, var(--min)); font-weight: 600; letter-spacing: -0.02em; }
+.siteNav nav { display: flex; gap: 34px; font-size: max(16px, var(--min)); opacity: 0.85; }
+.siteHero { position: absolute; inset: 0; }
+.siteHero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(23, 36, 28, 0.92) 0%, rgba(23, 36, 28, 0.55) 48%, rgba(23, 36, 28, 0.1) 100%); }
+.siteFoot { position: absolute; z-index: 2; left: 56px; bottom: 26px; font-family: var(--mono); font-size: max(12px, var(--min)); letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.75; }
+.siteHead { position: absolute; left: 56px; top: 170px; width: 640px; color: var(--mf-cream); }
+.siteHead h3 { font-size: max(92px, var(--min)); line-height: 0.95; font-weight: 500; letter-spacing: -0.045em; }
+.siteHead p { margin-top: 20px; font-size: max(20px, var(--min)); opacity: 0.85; }
+.siteCards { position: absolute; left: 56px; right: 56px; bottom: 74px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.siteCard { display: grid; grid-template-columns: 96px 1fr; gap: 16px; align-items: center; padding: 14px; border-radius: 14px; background: var(--mf-cream); color: var(--mf-green); box-shadow: 0 14px 40px -18px rgba(0, 0, 0, 0.6); }
+.siteThumb { position: relative; height: 96px; border-radius: 10px; overflow: hidden; }
+.siteCard b { display: block; font-size: max(22px, var(--min)); font-weight: 600; letter-spacing: -0.02em; }
+.siteCard small { font-size: max(14px, var(--min)); color: #5b6a60; }
+.siteBtn { position: absolute; left: 56px; top: 452px; height: max(58px, calc(var(--min) * 1.9)); padding: 0 28px; display: inline-flex; align-items: center; gap: 12px; border-radius: 12px; background: var(--mf-brass); color: #fff; font-size: max(19px, var(--min)); font-weight: 600; box-shadow: 0 16px 40px -16px rgba(0, 0, 0, 0.7); }
+
+/* ---------- the booking ticket (300 × 168) ---------- */
+.ticket { width: 300px; height: 168px; padding: 18px 20px; display: grid; align-content: space-between; border-radius: 14px; background: var(--paper); color: var(--ink); box-shadow: inset 0 0 0 1px var(--gold); font-family: var(--sans); }
+.ticketTop { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-family: var(--mono); font-size: max(12px, var(--min)); letter-spacing: 0.14em; text-transform: uppercase; }
+.ticketTop b { color: #2f6b3a; font-weight: 600; }
+.ticketWhen { font-size: max(30px, var(--min)); line-height: 1; font-weight: 600; letter-spacing: -0.04em; }
+.ticketWhat { margin-top: 6px; font-size: max(15px, var(--min)); color: var(--ink-soft); }
+
+/* ---------- the salon's dashboard (1280 × 800) ---------- */
+.dash { --diary: 0; --toast: 0; --auto: 0;
+  position: relative; width: 1280px; height: 800px; display: grid; grid-template-columns: 220px 1fr 300px; overflow: hidden;
+  background: #121915; color: #e9e6dc; font-family: var(--sans); font-size: max(15px, var(--min)); -webkit-font-smoothing: antialiased; }
+.dash[data-mode="full"] { --diary: 1; --toast: 0; --auto: 1; }
+.dashNav { padding: 30px 22px; display: flex; flex-direction: column; gap: 6px; background: #0e1410; border-right: 1px solid rgba(233, 230, 220, 0.08); }
+.dashBrand { display: flex; align-items: center; gap: 10px; margin-bottom: 26px; font-weight: 600; letter-spacing: -0.02em; }
+.dashNav span { padding: 10px 12px; border-radius: 10px; color: #a9b2a9; }
+.dashNav span[data-on] { background: rgba(176, 141, 87, 0.16); color: var(--mf-cream); }
+.dashMain { padding: 30px 28px; display: grid; grid-template-rows: auto 1fr; gap: 18px; }
+.dashTitle { display: flex; justify-content: space-between; align-items: baseline; }
+.dashTitle h4 { font-size: max(30px, var(--min)); font-weight: 600; letter-spacing: -0.03em; }
+.dashTitle small { font-family: var(--mono); font-size: max(12px, var(--min)); letter-spacing: 0.14em; text-transform: uppercase; color: #8d978e; }
+.diary { display: grid; grid-template-columns: 64px repeat(6, 1fr); grid-template-rows: 34px repeat(6, 1fr); gap: 6px; }
+.diary > span { font-family: var(--mono); font-size: max(12px, var(--min)); letter-spacing: 0.08em; color: #8d978e; display: flex; align-items: center; }
+.cell { position: relative; border-radius: 8px; background: rgba(233, 230, 220, 0.04); }
+.entry { position: absolute; inset: 0; overflow: hidden; padding: 8px 10px; border-radius: 8px; background: rgba(127, 158, 124, 0.22); color: #cfdacb; font-size: max(12.5px, var(--min)); line-height: 1.25; }
+.newEntry { position: absolute; inset: -2px; overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; padding: 8px 10px; border-radius: 9px; background: #7fa07a; color: #0e1410; font-size: max(12.5px, var(--min)); font-weight: 600; line-height: 1.25;
+  clip-path: inset(0 calc((1 - var(--diary)) * 100%) 0 0 round 9px); box-shadow: 0 0 0 calc(var(--diary) * 2px) var(--mf-brass); }
+.toast { position: absolute; right: 24px; top: 24px; z-index: 4; display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-radius: 12px; background: var(--mf-cream); color: var(--mf-green); font-weight: 600; box-shadow: 0 18px 50px -20px rgba(0, 0, 0, 0.8);
+  opacity: var(--toast); transform: translateX(calc((1 - var(--toast)) * 40px)); }
+.toast i { width: 9px; height: 9px; border-radius: 50%; background: #3f8a46; }
+.dashSide { padding: 96px 24px 30px 0; display: grid; align-content: start; gap: 18px; }
+.panel { padding: 18px; border-radius: 14px; background: rgba(233, 230, 220, 0.05); border: 1px solid rgba(233, 230, 220, 0.08); }
+.panel h5 { margin-bottom: 12px; font-family: var(--mono); font-size: max(12px, var(--min)); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #a9b2a9; }
+.auto { display: flex; gap: 10px; padding: 10px 0; border-top: 1px solid rgba(233, 230, 220, 0.08); font-size: max(14px, var(--min)); color: #dcd8cc;
+  opacity: clamp(0, calc((var(--auto) * 2 - var(--i)) * 1), 1); }
+.auto b { color: #8fbf87; }
+.chart { display: flex; align-items: flex-end; gap: 10px; height: 120px; padding-top: 6px; }
+.chart i { flex: 1; border-radius: 6px 6px 2px 2px; background: linear-gradient(#b08d57, rgba(176, 141, 87, 0.35)); }
+.illustrative { display: inline-block; margin-top: 12px; padding: 5px 9px; border-radius: 6px; background: rgba(176, 141, 87, 0.2); color: var(--mf-cream); font-family: var(--mono); font-size: max(16px, var(--min)); letter-spacing: 0.14em; text-transform: uppercase; }
+.clients { display: grid; gap: 8px; }
+.clients div { display: flex; align-items: center; gap: 10px; font-size: max(14px, var(--min)); color: #dcd8cc; }
+.clients i { width: 26px; height: 26px; border-radius: 50%; background: rgba(233, 230, 220, 0.12); }
+.adAvatarSm { width: 30px; height: 30px; flex: none; display: grid; place-items: center; border-radius: 50%; background: var(--mf-green); color: var(--mf-cream); box-shadow: inset 0 0 0 1px rgba(176, 141, 87, 0.6); font-size: max(10px, var(--min)); font-weight: 600; }
+
+/* the website, small (portrait): a wider headline, the button lower, cards without thumbnails */
+[data-size="s"] .siteHead { width: 960px; }
+[data-size="s"] .siteBtn { top: 520px; }
+[data-size="s"] .siteCard { grid-template-columns: 1fr; padding: 14px 20px; }
+[data-size="s"] .siteThumb, [data-size="s"] .siteCard small { display: none; }
+[data-size="s"] .siteNav nav span:not(:last-child) { display: none; }
+
+/* the dashboard, medium (laptop): no side nav, so the diary has room for real-size text */
+[data-size="m"] .dash, [data-size="s"] .dash { grid-template-columns: 1fr 300px; }
+[data-size="m"] .dashNav, [data-size="s"] .dashNav { display: none; }
+/* small (the portrait tablet): Thursday to Saturday, 09:00 to 13:30, the toast; no side panels */
+[data-size="s"] .dash { grid-template-columns: 1fr; }
+[data-size="s"] .dashSide { display: none; }
+[data-size="s"] .diary { grid-template-columns: 150px repeat(3, 1fr); grid-template-rows: auto repeat(4, 1fr); gap: 10px; }
+[data-size="s"] .diary [data-d="0"], [data-size="s"] .diary [data-d="1"], [data-size="s"] .diary [data-d="2"], [data-size="s"] .diary [data-h="4"], [data-size="s"] .diary [data-h="5"] { display: none; }
+[data-size="s"] .newEntry { -webkit-line-clamp: 2; }
+[data-size="s"] .toast { left: 28px; right: 28px; }
+
+/* the phone, small (portrait): the service list's details go */
+[data-size="s"] .mList small { display: none; }

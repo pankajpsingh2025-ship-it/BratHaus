@@ -1,0 +1,33 @@
+.hdr {
+  --header-bg: rgba(14, 14, 13, 0.72);
+  --header-fg: #f3eee6;
+  --header-line: transparent;
+  --header-mark: var(--gold);
+  position: fixed; z-index: 100; left: 0; right: 0; top: 0; height: var(--header-h);
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  padding-inline: var(--margin);
+  color: var(--header-fg);
+  background: var(--header-bg);
+  border-bottom: 1px solid var(--header-line);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+.hdr[data-theme="ivory"] { --header-bg: rgba(243, 238, 230, 0.86); --header-fg: #151412; --header-line: rgba(21, 20, 18, 0.08); --header-mark: #151412; }
+.hdr[data-clear] { --header-bg: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; }
+.hdr :global(.lockup__mark) { color: var(--header-mark); }
+.hdr :focus-visible { outline-color: var(--header-fg); }
+/* "Book a call" inverts: ivory on night, ink on ivory */
+.hdr :global(.btn) { --btn-bg: var(--header-fg); --btn-fg: var(--night); }
+.hdr[data-theme="ivory"] :global(.btn) { --btn-fg: var(--ivory); }
+.hdr :global(.btn:hover), .hdr :global(.btn:focus-visible) { --btn-bg: var(--gold); --btn-fg: var(--ink); }
+.brand { display: inline-flex; padding: 6px 0; color: var(--header-fg); }
+.nav { display: flex; align-items: center; gap: 32px; font-size: var(--t-ui); }
+.link { color: var(--header-fg); }
+.link[aria-current="page"]::after { transform: scaleX(1); }
+.menuBtn { display: none; height: 40px; padding: 0 16px; border-radius: 10px; border: 1px solid color-mix(in srgb, var(--header-fg) 22%, transparent); background: none; color: var(--header-fg); font-size: var(--t-ui); font-weight: 500; }
+.menuBtn:hover, .menuBtn:focus-visible { border-color: var(--gold); }
+@media (max-width: 860px) {
+  .nav { display: none; }
+  .menuBtn { display: inline-flex; align-items: center; }
+}
+:global(html.is-preloading) .hdr { visibility: hidden; }

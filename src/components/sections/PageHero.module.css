@@ -1,0 +1,20 @@
+.hero { position: relative; z-index: 2; min-height: 78svh; display: grid; align-items: end; padding: calc(var(--header-h) + 8svh) 0 clamp(56px, 10svh, 120px); }
+.tall { min-height: 100svh; }
+.copy { position: relative; z-index: 2; display: grid; gap: 24px; max-width: 1400px; }
+.title { font-size: var(--t-display); max-width: 16ch; }
+.withMedia { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); }
+.withMedia .copy { grid-column: 1 / 8; grid-row: 1; }
+.media { grid-column: 8 / 13; grid-row: 1; align-self: center; position: relative; min-height: 40svh; margin-right: var(--margin); }
+
+@media (max-width: 860px) {
+  .withMedia { grid-template-columns: 1fr; align-content: end; }
+  .media { grid-column: 1; grid-row: 1; min-height: 40svh; margin: 0 var(--margin) 24px; }
+  .withMedia .copy { grid-row: 2; }
+}
+.line { display: block; }
+
+@media (max-height: 520px) and (orientation: landscape) and (max-width: 860px) {
+  .withMedia { grid-template-columns: 1fr 1fr; align-content: center; }
+  .media { grid-column: 2; grid-row: 1; min-height: 60svh; margin: 0 var(--margin) 0 0; }
+  .withMedia .copy { grid-column: 1; grid-row: 1; }
+}

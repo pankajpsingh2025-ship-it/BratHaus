@@ -1,0 +1,21 @@
+.visual { display: grid; gap: 20px; }
+.caption { justify-self: end; color: var(--fg-soft); }
+.adWrap { display: grid; grid-template-columns: minmax(0, 300px) auto; justify-content: center; align-items: center; gap: 28px; }
+.chips { display: grid; gap: 12px; }
+.chips li { display: inline-flex; align-items: center; gap: 10px; justify-self: start; padding: 9px 16px; border-radius: 22px; border: 1px solid var(--line); background: rgba(255, 255, 255, 0.55); color: var(--ink); font-size: var(--t-ui); font-weight: 400; }
+.chips i { width: 6px; height: 6px; border-radius: 50%; background: var(--gold-deep); }
+.chatWrap { position: relative; display: grid; justify-items: center; }
+.chatWrap > :first-child { max-width: 300px; }
+.booked { position: absolute; right: 0; bottom: 16%; width: 300px; filter: drop-shadow(0 24px 40px rgba(21, 20, 18, 0.25)); }
+@media (max-width: 1100px) { .booked { right: -2%; width: 260px; } .booked > :global(*) { zoom: 0.8667; } }
+@media (max-width: 720px) {
+  .adWrap { grid-template-columns: 1fr; justify-items: center; }
+  .chips { justify-items: center; }
+  .chatWrap { gap: 18px; }
+  .booked { position: static; }
+}
+/* landscape phones: the chips go under the phone, so the phone keeps its width */
+@media (max-height: 520px) and (orientation: landscape) {
+  .adWrap { grid-template-columns: 1fr; justify-items: center; }
+  .chips { justify-items: center; }
+}

@@ -1,0 +1,7 @@
+.split { align-items: start; row-gap: 48px; }
+.side { grid-column: 1 / 5; position: sticky; top: calc(var(--header-h) + 40px); display: grid; gap: 28px; }
+.steps { display: grid; border-top: 1px solid var(--line); }
+.steps li { display: flex; gap: 18px; align-items: baseline; padding: 18px 0; border-bottom: 1px solid var(--line); font-family: var(--serif); font-size: var(--t-h3); font-weight: 400; letter-spacing: -0.005em; line-height: 1.25; }
+.meta { display: grid; gap: 12px; justify-items: start; user-select: text; }
+.form { grid-column: 6 / 13; }
+@media (max-width: 860px) { .side, .form { grid-column: 1 / -1; } .side { position: static; } }

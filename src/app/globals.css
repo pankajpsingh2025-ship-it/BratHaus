@@ -1,0 +1,251 @@
+/* =========================================================
+   BratHaus: the story site. Tokens, type, base, shared pieces.
+   Component styles live next to their components (CSS Modules).
+   ========================================================= */
+:root {
+  /* BratHaus */
+  --night: #0e0e0d;
+  --night-2: #181715;
+  --ivory: #f3eee6;
+  --paper: #fbf8f3;
+  --ink: #151412;
+  --ink-soft: #5e5a53;
+  --mist: #b9b3a9;
+  --gold: #d4af7c;
+  --gold-deep: #836337; /* the brief's #8C6A3A, a touch deeper: 4.78:1 on ivory (the brief also asks for ≥ 4.5:1) */
+  --olive: #6b7f5b;
+  /* Marlow & Finch, the fictional example business (its own mock UI only) */
+  --mf-green: #23362b;
+  --mf-cream: #f4efe6;
+  --mf-brass: #b08d57;
+  --mf-blush: #e9d2c6;
+
+  --sans: var(--font-host), "Host Grotesk", system-ui, sans-serif;
+  --serif: var(--font-serif), "Newsreader", Georgia, "Times New Roman", serif;
+  --mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
+
+  /* the type scale: no other sizes outside the device UIs */
+  --t-display: clamp(44px, 5.4vw, 84px);
+  --t-h2: clamp(30px, 3.4vw, 52px);
+  --t-h3: clamp(21px, 1.7vw, 26px);
+  --t-lead: clamp(18px, 1.45vw, 21px);
+  --t-body: 17px;
+  --t-ui: 15px;
+  --t-label: 12px;
+
+  --margin: clamp(20px, 6vw, 112px);
+  --gutter: 24px;
+  /* breathing space between sections */
+  --rhythm: clamp(88px, 10vw, 160px);
+  --header-h: 64px;
+  --expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --inout: cubic-bezier(0.87, 0, 0.13, 1);
+
+  /* the theme a block is on (night by default) */
+  --fg: var(--ivory);
+  --fg-soft: var(--mist);
+  --accent: var(--gold);
+  --line: rgba(243, 238, 230, 0.14);
+  --bg: var(--night);
+}
+@media (max-width: 640px) { :root { --header-h: 56px; --t-body: 16px; --t-label: 11px; } }
+.on-ivory {
+  --fg: var(--ink);
+  --fg-soft: var(--ink-soft);
+  --accent: var(--gold-deep);
+  --line: rgba(21, 20, 18, 0.12);
+  --bg: var(--ivory);
+  color: var(--fg);
+}
+.on-night {
+  --fg: var(--ivory);
+  --fg-soft: var(--mist);
+  --accent: var(--gold);
+  --line: rgba(243, 238, 230, 0.14);
+  --bg: var(--night);
+  color: var(--fg);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { background: var(--night); color: var(--ivory); -webkit-text-size-adjust: 100%; text-size-adjust: 100%; overflow-x: clip; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+body {
+  margin: 0;
+  background: var(--night);
+  font-family: var(--sans);
+  font-size: var(--t-body);
+  line-height: 1.6;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+img, video, svg, canvas { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button, input, textarea, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+h1, h2, h3, h4, p, ul, ol, figure, blockquote, dl, dd { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+b, strong { font-weight: 500; }
+small { font-size: var(--t-label); }
+::selection { background: var(--gold); color: var(--ink); }
+
+:focus { outline: none; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.skip-link { position: fixed; left: 16px; top: 12px; z-index: 210; padding: 12px 18px; border-radius: 10px; background: var(--ivory); color: var(--ink); transform: translateY(-160%); transition: transform 0.3s var(--expo); }
+.skip-link:focus-visible { transform: none; }
+
+/* ---------- layout ---------- */
+.page { padding-inline: var(--margin); }
+.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); }
+/* everything above the canvas (z 1) */
+.above { position: relative; z-index: 2; }
+
+/* ---------- type ----------
+   Three families, one scale. Newsreader (an editorial text serif, weight 400 only) for the
+   display line and headings; Host Grotesk 400/500 for reading and UI; Geist Mono 400 for small
+   labels only. Headings reveal with a mask-rise; nothing is outlined. */
+.t-display, .display { font-family: var(--serif); font-weight: 400; letter-spacing: -0.02em; line-height: 1.04; }
+.t-display { font-size: var(--t-display); }
+.t-h2 { font-family: var(--serif); font-weight: 400; font-size: var(--t-h2); line-height: 1.1; letter-spacing: -0.015em; }
+.t-h3 { font-family: var(--serif); font-weight: 400; font-size: var(--t-h3); line-height: 1.25; letter-spacing: -0.005em; }
+.t-lead, .lead { font-size: var(--t-lead); line-height: 1.5; letter-spacing: -0.005em; font-weight: 400; }
+.t-body { font-size: var(--t-body); line-height: 1.6; }
+.t-ui { font-size: var(--t-ui); font-weight: 500; line-height: 1; }
+.t-label, .mono { font-family: var(--mono); font-weight: 400; font-size: var(--t-label); line-height: 1.3; letter-spacing: 0.12em; text-transform: uppercase; }
+/* older names, mapped onto the scale */
+.t-hero, .t-title { font-size: var(--t-display); }
+.t-chapter, .t-section { font-size: var(--t-h2); line-height: 1.1; letter-spacing: -0.015em; }
+.mono--sm { font-size: var(--t-label); }
+.body-soft { color: var(--fg-soft); }
+.measure { max-width: 52ch; }
+.soft { color: var(--fg-soft); }
+.accent { color: var(--accent); }
+/* Headings: solid, revealed by a mask-rise (lines are wrapped in an overflow mask by SplitText) */
+.reveal-line { display: block; }
+
+/* ---------- buttons and links ---------- */
+.btn {
+  --btn-bg: var(--ivory); --btn-fg: var(--ink);
+  position: relative; display: inline-flex; align-items: center; gap: 12px;
+  height: 52px; padding: 0 22px; border: 0; border-radius: 10px;
+  background: var(--btn-bg); color: var(--btn-fg);
+  font-size: var(--t-ui); font-weight: 500; letter-spacing: 0; white-space: nowrap;
+  transition: background-color 0.3s var(--expo), color 0.3s var(--expo);
+}
+.on-ivory .btn { --btn-bg: var(--ink); --btn-fg: var(--ivory); }
+.btn .arr { display: inline-block; transition: transform 0.3s var(--expo); }
+.btn:hover, .btn:focus-visible { --btn-bg: var(--gold); --btn-fg: var(--ink); }
+.btn:hover .arr, .btn:focus-visible .arr { transform: translateX(4px); }
+.btn--small { height: 44px; padding: 0 18px; font-size: var(--t-ui); }
+/* buttons are their own width; full width only on the narrowest phones */
+@media (max-width: 479px) { .btn:not(.btn--small) { width: 100%; justify-content: center; } }
+
+.tlink { position: relative; display: inline-flex; align-items: center; gap: 8px; padding-block: 4px; font-size: var(--t-ui); font-weight: 500; }
+.tlink::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform 0.45s var(--expo); }
+.tlink:hover::after, .tlink:focus-visible::after { transform: scaleX(1); transform-origin: left; }
+.tlink .arr { display: inline-block; transition: transform 0.3s var(--expo); }
+.tlink:hover .arr, .tlink:focus-visible .arr { transform: translateX(4px); }
+.tlink--accent { color: var(--accent); }
+button.tlink { border: 0; background: none; padding-inline: 0; color: inherit; font-size: var(--t-ui); }
+
+/* ---------- callouts (3D annotations, positioned each frame) ---------- */
+.callout { position: absolute; left: 0; top: 0; display: flex; align-items: center; gap: 0; pointer-events: none; opacity: 0; will-change: transform; }
+.callout__dot { width: 6px; height: 6px; margin: -3px 0 0 -3px; border-radius: 50%; background: var(--gold); flex: none; transform: scale(0); transition: transform 0.35s var(--expo); }
+.callout__line { width: 56px; height: 1px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.5s var(--expo) 0.1s; }
+.callout__label { padding-left: 10px; color: var(--ivory); white-space: nowrap; opacity: 0; transform: translateX(-6px); transition: opacity 0.4s var(--expo) 0.4s, transform 0.4s var(--expo) 0.4s; }
+.callout--left { flex-direction: row-reverse; }
+.callout--left .callout__line { transform-origin: right; }
+.callout--left .callout__label { padding: 0 10px 0 0; transform: translateX(6px); }
+.callout--short .callout__line { width: 20px; }
+.callout.is-on { opacity: 1; }
+.callout.is-on .callout__dot { transform: scale(1); }
+.callout.is-on .callout__line { transform: scaleX(1); }
+.callout.is-on .callout__label { opacity: 1; transform: none; }
+
+/* ---------- sheets: the day sections, in normal flow ----------
+   Each one tucks its 24px rounded top corner over the one before (only the corner overlaps), so
+   nothing ever covers content that hasn't been read. Later sections paint over earlier ones by order. */
+.sheet {
+  position: relative; z-index: 2;
+  margin-top: -24px;
+  border-radius: 24px 24px 0 0;
+  background: var(--bg);
+}
+.section { padding-block: var(--rhythm); }
+
+/* ---------- media ---------- */
+.media { position: relative; overflow: hidden; border-radius: 16px; background: var(--night-2); }
+.media img, .media video { width: 100%; height: 100%; object-fit: cover; }
+/* A designed placeholder for any slot whose file isn't there yet. Never a broken image. */
+.ph { position: absolute; inset: 0; display: grid; place-items: center; align-content: center; gap: 14px; background: var(--night-2); color: var(--mist); }
+.on-ivory .ph, .ph--ivory { background: #e9e3d9; color: var(--ink-soft); }
+.ph svg { width: 56px; height: auto; opacity: 0.8; }
+.ph span { font-family: var(--mono); font-size: var(--t-label); letter-spacing: 0.12em; text-transform: uppercase; }
+
+/* ---------- 3D slots (inner-page Views) ---------- */
+.slot { position: relative; overflow: hidden; }
+.slot__still, .slot__view { position: absolute; inset: 0; }
+.slot__still { transition: opacity 0.6s var(--expo); }
+.slot__still img { width: 100%; height: 100%; object-fit: cover; }
+.slot.is-live .slot__still { opacity: 0; }
+
+/* ---------- live preview (ported) ---------- */
+.live { overflow: hidden; border-radius: 16px; border: 1px solid var(--line); background: var(--night-2); color: var(--ivory); }
+.live__bar { display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: #1f1e1b; border-bottom: 1px solid rgba(243, 238, 230, 0.1); }
+.live__dots { display: flex; gap: 6px; } .live__dots i { width: 9px; height: 9px; border-radius: 50%; background: #3a3833; }
+.live__url { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: var(--mono); font-size: var(--t-label); color: var(--mist); }
+.live__tools { display: flex; align-items: center; gap: 8px; }
+.live__switch { display: flex; padding: 3px; border-radius: 8px; background: var(--night); border: 1px solid rgba(243, 238, 230, 0.1); }
+.live__switch button, .live__tool { padding: 5px 12px; border-radius: 6px; border: 0; background: none; font-size: var(--t-label); font-family: var(--mono); letter-spacing: 0.08em; color: var(--mist); }
+.live__switch button[aria-pressed="true"] { background: var(--ivory); color: var(--ink); }
+.live__tool:hover, .live__tool:focus-visible { color: var(--gold); }
+.live__view { position: relative; aspect-ratio: 16 / 10; display: grid; place-items: center; background: var(--night); overflow: hidden; }
+.live--phone.is-live .live__view { aspect-ratio: auto; height: min(78vh, 760px); }
+.live__screen { position: relative; overflow: hidden; }
+.live--phone .live__screen { border-radius: 28px; box-shadow: 0 0 0 8px #1f1e1b; }
+.live__screen iframe { position: absolute; left: 0; top: 0; border: 0; transform-origin: 0 0; background: #fff; }
+.live__poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.live__cta { position: absolute; left: 0; right: 0; bottom: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; padding: 22px; background: linear-gradient(transparent, rgba(14, 14, 13, 0.88)); }
+.live__cta p { font-size: var(--t-ui); font-weight: 400; line-height: 1.5; color: var(--mist); max-width: 40ch; }
+
+.lmodal { width: min(1200px, 94vw); max-width: none; max-height: 94vh; padding: 0; border: 1px solid rgba(243, 238, 230, 0.14); border-radius: 20px; background: var(--night-2); color: var(--ivory); overflow: auto; }
+.lmodal::backdrop { background: rgba(14, 14, 13, 0.78); backdrop-filter: blur(8px); }
+.lmodal[open] { animation: lm-in 0.6s var(--expo); }
+@keyframes lm-in { from { opacity: 0; transform: translateY(24px) scale(0.98); } }
+.lmodal__inner { padding: clamp(16px, 2vw, 28px); display: grid; gap: 18px; }
+.lmodal__head { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 4px 16px; }
+.lmodal__title { grid-column: 1; font-family: var(--serif); font-weight: 400; letter-spacing: -0.015em; font-size: var(--t-h2); line-height: 1.1; }
+.lmodal__close { grid-column: 2; grid-row: 1 / span 2; height: 44px; padding: 0 18px; border-radius: 10px; border: 1px solid rgba(243, 238, 230, 0.2); background: none; }
+.lmodal__close:hover, .lmodal__close:focus-visible { border-color: var(--gold); color: var(--gold); }
+
+.vcard { position: absolute; inset: 0; overflow: hidden; }
+.vcard img { transition: transform 1.2s var(--expo); }
+.vcard video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.6s var(--expo); }
+.vcard.is-on video { opacity: 1; }
+.vcard.is-on img { transform: scale(1.04); }
+
+/* ---------- motion preferences ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+.callout--caption .callout__label { padding: 0; color: var(--mist); }
+.callout--caption .callout__dot, .callout--caption .callout__line { display: none; }
+
+/* ---------- the lockup (header, menu) ---------- */
+.lockup { display: inline-flex; align-items: center; gap: 10px; }
+.lockup__mark { width: 26px; height: 26px; color: var(--gold); }
+.lockup__word { font-size: var(--t-body); font-weight: 500; letter-spacing: -0.02em; }
+
+/* the story sits under the first sheet for one screen while it slides over */
+section[data-story] + .sheet { margin-top: -24px; }
+
+/* ---------- the Services hero's journey line ---------- */
+.journey { position: relative; width: 100%; max-width: 620px; margin-inline: auto; aspect-ratio: 560 / 330; }
+.journey svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.journey__label { position: absolute; transform: translateX(-50%); white-space: nowrap; color: var(--ivory); }

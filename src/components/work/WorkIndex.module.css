@@ -1,0 +1,4 @@
+.chips { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: clamp(56px, 9svh, 110px); }
+.chip { height: 44px; padding: 0 18px; border-radius: 10px; border: 1px solid var(--line); background: none; color: var(--fg); font-size: var(--t-ui); transition: background-color 0.3s var(--expo), color 0.3s var(--expo); }
+.chip:hover, .chip:focus-visible { border-color: var(--accent); }
+.on { background: var(--ink); color: var(--ivory); border-color: var(--ink); }

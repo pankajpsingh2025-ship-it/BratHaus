@@ -1,0 +1,10 @@
+/* transparent: the night page shows through and the canvas draws the laptop here */
+.laptop { position: relative; z-index: 2; height: 220svh; }
+.lite { height: auto; }
+.stage { position: sticky; top: 0; height: 100svh; }
+/* a soft warm light behind the laptop (screen-blended, so it only lifts the night around it) */
+.stage::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(46% 52% at 50% 56%, rgba(212, 175, 124, 0.14), rgba(212, 175, 124, 0) 72%); mix-blend-mode: screen; }
+.lite .stage { position: relative; height: 80svh; }
+.slot { position: absolute; inset: var(--header-h) 0 0; }
+.pill { position: absolute; left: 50%; bottom: clamp(40px, 8svh, 80px); transform: translateX(-50%); visibility: hidden; opacity: 0; }
+.off { position: relative; z-index: 2; padding-block: var(--rhythm); }

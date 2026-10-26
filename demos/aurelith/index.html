@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aurelith | Fine jewellery, made to order (concept build)</title>
+  <meta name="description" content="A concept build by BratHaus for a fictional jewellery atelier, with a real-time 3D gold ring." />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f3efe9'/%3E%3Ccircle cx='32' cy='36' r='14' fill='none' stroke='%23b8935a' stroke-width='5'/%3E%3Cpath d='M32 10l6 8h-12z' fill='%231a1714'/%3E%3C/svg%3E" />
+  <style>html,body{background:#f3efe9;margin:0}</style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <canvas class="gl" aria-hidden="true"></canvas>
+  <header class="nav">
+    <a class="nav__brand" href="#top">Aurelith</a>
+    <nav aria-label="Main"><a href="#collection">Collection</a><a href="#craft">Craft</a><a href="#consult">Bespoke</a></nav>
+    <a class="btn" href="#consult">Book a consultation</a>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <p class="kicker">Fine jewellery · made to order</p>
+      <h1 id="hero-title" class="hero__word">Aurelith</h1>
+      <p class="hero__line">Rings that are <em>almost alive.</em> Turn it, tilt it, make it yours.</p>
+      <p class="hero__hint" aria-hidden="true">Move to catch the light</p>
+    </section>
+
+    <section class="collection" id="collection" aria-labelledby="col-title">
+      <div class="collection__copy">
+        <p class="kicker">The collection</p>
+        <h2 id="col-title">Four rings. <em>One hand.</em></h2>
+        <p>Each piece is cast in 18k gold and finished by hand. Point at a card to bring it forward.</p>
+      </div>
+      <ul class="fan">
+        <li style="--i:0"><div class="card card--halo"></div><h3>Halo</h3><p>A single brilliant, held in a ring of light.</p></li>
+        <li style="--i:1"><div class="card card--solstice"></div><h3>Solstice</h3><p>Warm gold, a band that catches the low sun.</p></li>
+        <li style="--i:2"><div class="card card--meridian"></div><h3>Meridian</h3><p>A fine line of diamonds around the whole band.</p></li>
+        <li style="--i:3"><div class="card card--ember"></div><h3>Ember</h3><p>Hammered gold with a rose-cut stone.</p></li>
+      </ul>
+    </section>
+
+    <section class="craft" id="craft" aria-labelledby="craft-title">
+      <div class="craft__stage">
+        <h2 id="craft-title">From sketch to <em>your hand.</em></h2>
+        <svg class="thread" viewBox="0 0 1000 220" preserveAspectRatio="none" aria-hidden="true"><path d="M0 160 C 140 40, 260 40, 330 120 S 520 210, 600 110 S 820 10, 1000 90" /></svg>
+        <ol class="craft__steps">
+          <li><span>i.</span><h3>Sketch</h3><p>We draw it with you, by hand, until it feels like yours.</p></li>
+          <li><span>ii.</span><h3>Cast</h3><p>Recycled 18k gold, poured into the mould once and once only.</p></li>
+          <li><span>iii.</span><h3>Set</h3><p>Every stone set under the loupe, claw by claw.</p></li>
+          <li><span>iv.</span><h3>Polish</h3><p>Finished by hand, then checked in north light before it leaves.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="consult" id="consult" aria-labelledby="consult-title">
+      <h2 id="consult-title">Begin with a <em>conversation.</em></h2>
+      <form class="form" id="consult-form" novalidate>
+        <label>Your name<input name="name" autocomplete="name" required /></label>
+        <label>Email<input name="email" type="email" autocomplete="email" required /></label>
+        <label>I'm thinking about<select name="piece" required><option value="">Choose one</option><option>An engagement ring</option><option>A wedding band</option><option>Something bespoke</option><option>Remaking an heirloom</option></select></label>
+        <button class="btn btn--dark" type="submit">Request a consultation</button>
+        <p class="form__note" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="foot"><p class="nav__brand">Aurelith</p><p>Aurelith is a fictional brand. This is a concept build by <a href="/" target="_top">BratHaus</a>.</p></footer>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

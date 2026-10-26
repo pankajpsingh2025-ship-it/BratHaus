@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wren &amp; Ashby | Independent estate agents, Bath (concept build)</title>
+  <meta name="description" content="A concept build by BratHaus for a fictional Bath estate agency: walk through the house before you visit." />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231f3d2f'/%3E%3Ctext x='32' y='43' font-family='Georgia' font-size='30' fill='%23f4efe6' text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E" />
+  <style>html,body{background:#f4efe6;margin:0}</style>
+  <script type="module" crossorigin src="/demos/wren-ashby/assets/index-pTx4SELs.js"></script>
+  <link rel="stylesheet" crossorigin href="/demos/wren-ashby/assets/index-DIj7X4-V.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <a class="nav__brand" href="#top">Wren <em>&amp;</em> Ashby</a>
+    <nav aria-label="Main"><a href="#rooms">Inside</a><a href="#light">The light</a><a href="#homes">Homes</a><a href="#value">Valuations</a></nav>
+    <a class="btn" href="#value">Book a viewing</a>
+  </header>
+
+  <main id="main">
+    <!-- 1. the street, then through the front door -->
+    <section class="door" id="top" aria-labelledby="hero-title">
+      <div class="door__stage">
+        <div class="door__img" aria-hidden="true"><img src="/work/wren-ashby-hero.webp" alt="" /></div>
+        <div class="door__veil" aria-hidden="true"></div>
+        <div class="door__copy">
+          <p class="kicker">Independent estate agents · Bath</p>
+          <h1 id="hero-title">Come <em>inside.</em></h1>
+          <p class="lede">Walk through every room before you visit. Fewer homes, looked after properly.</p>
+          <p class="hint" aria-hidden="true">Scroll to open the door</p>
+        </div>
+        <div class="door__inside" aria-hidden="true">
+          <p class="kicker">You're in</p>
+          <p class="big">Mind the <em>step.</em></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. room by room, sideways -->
+    <section class="rooms" id="rooms" aria-labelledby="rooms-title">
+      <div class="rooms__stage">
+        <h2 id="rooms-title" class="rooms__title">Room by <em>room.</em></h2>
+        <div class="rooms__track">
+          <article class="room room--hall">
+            <svg viewBox="0 0 200 140" aria-hidden="true"><path d="M20 130V40h40v90M70 130V20h60v110M140 130V40h40v90" /><circle cx="100" cy="60" r="6" /><path d="M85 130v-30h30v30" /></svg>
+            <p class="room__n">01</p><h3>The hall</h3><p>Flagstones, a fanlight, and the first breath of the house.</p>
+          </article>
+          <article class="room room--drawing">
+            <svg viewBox="0 0 200 140" aria-hidden="true"><path d="M60 130V70h80v60M50 70h100M75 130v-35h50v35" /><path d="M90 110c5-10 15-10 20 0" /><rect x="20" y="30" width="30" height="45" /><rect x="150" y="30" width="30" height="45" /></svg>
+            <p class="room__n">02</p><h3>The drawing room</h3><p>Fire lit, tall sashes, the evening light the photos never catch.</p>
+          </article>
+          <article class="room room--kitchen">
+            <svg viewBox="0 0 200 140" aria-hidden="true"><path d="M20 130h160M30 130V90h140v40M30 90V70h140v20" /><circle cx="70" cy="80" r="5" /><circle cx="130" cy="80" r="5" /><path d="M95 40h10v30H95z" /></svg>
+            <p class="room__n">03</p><h3>The kitchen</h3><p>Where the house is actually lived in. Big table, back door open.</p>
+          </article>
+          <article class="room room--garden">
+            <svg viewBox="0 0 200 140" aria-hidden="true"><path d="M100 130V70" /><circle cx="100" cy="55" r="30" /><path d="M20 130h160M40 130c0-15 10-20 20-20s20 5 20 20M120 130c0-12 8-16 16-16s16 4 16 16" /></svg>
+            <p class="room__n">04</p><h3>The garden</h3><p>South-facing, walled, and quieter than you'd think in the city.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. the light, from morning to dusk -->
+    <section class="light" id="light" aria-labelledby="light-title">
+      <div class="light__copy">
+        <p class="kicker">See the light</p>
+        <h2 id="light-title">Every room, at <em>every hour.</em></h2>
+        <p>Drag through the day. Buyers ask how a house feels at six in the evening, so we show them.</p>
+        <label class="light__label" for="hour">Time of day <output id="hour-out">07:00</output></label>
+        <input id="hour" type="range" min="7" max="22" step="0.25" value="7" />
+      </div>
+      <figure class="light__frame" aria-label="The house at the chosen time of day">
+        <img src="/work/wren-ashby-hero.webp" alt="" />
+        <div class="light__sky" aria-hidden="true"></div>
+        <i class="glow" style="--x:46.5%;--y:26%" aria-hidden="true"></i>
+        <i class="glow" style="--x:56.7%;--y:26%" aria-hidden="true"></i>
+        <i class="glow" style="--x:46.5%;--y:62%" aria-hidden="true"></i>
+      </figure>
+    </section>
+
+    <!-- 4. homes -->
+    <section class="homes" id="homes" aria-labelledby="homes-title">
+      <header><p class="kicker">On our books</p><h2 id="homes-title">A few homes, <em>looked after properly.</em></h2></header>
+      <div class="homes__grid">
+        <a class="home" href="#value"><div class="home__img" style="--pos:50% 35%"></div><p class="tag">Example listing</p><h3>The Circus</h3><p>Grade I townhouse · 5 bedrooms · walled garden</p></a>
+        <a class="home" href="#value"><div class="home__img" style="--pos:50% 75%;--f:sepia(.35) saturate(.9)"></div><p class="tag">Example listing</p><h3>Great Pulteney Street</h3><p>Georgian apartment · 2 bedrooms · river views</p></a>
+        <a class="home" href="#value"><div class="home__img" style="--pos:40% 20%;--f:brightness(.85) hue-rotate(-8deg)"></div><p class="tag">Example listing</p><h3>Lansdown Crescent</h3><p>Period house · 4 bedrooms · south-facing terrace</p></a>
+      </div>
+    </section>
+
+    <!-- 5. valuation -->
+    <section class="value" id="value" aria-labelledby="value-title">
+      <div>
+        <p class="kicker">Thinking of selling?</p>
+        <h2 id="value-title">Book a <em>valuation.</em></h2>
+        <p>One of us comes round, walks the house with you and tells you straight what it's worth.</p>
+      </div>
+      <form class="form" id="value-form" novalidate>
+        <label>Your name<input name="name" autocomplete="name" required /></label>
+        <label>Email<input name="email" type="email" autocomplete="email" required /></label>
+        <label>Postcode<input name="postcode" autocomplete="postal-code" required /></label>
+        <button class="btn" type="submit">Request a valuation</button>
+        <p class="form__note" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p class="nav__brand">Wren <em>&amp;</em> Ashby</p>
+    <p>Wren &amp; Ashby is a fictional brand. This is a concept build by <a href="/" target="_top">BratHaus</a>; listings are examples.</p>
+  </footer>
+</body>
+</html>

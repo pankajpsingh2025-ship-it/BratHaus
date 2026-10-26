@@ -1,0 +1,2 @@
+.label { position: fixed; left: 0; top: 0; z-index: 240; padding: 6px 10px; border-radius: 6px; background: var(--ivory); color: var(--ink); font-family: var(--mono); font-size: var(--t-label); letter-spacing: 0.1em; text-transform: uppercase; pointer-events: none; opacity: 0; transition: opacity 0.25s var(--expo); white-space: nowrap; }
+.on { opacity: 1; }

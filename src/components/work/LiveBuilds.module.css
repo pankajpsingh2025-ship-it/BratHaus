@@ -1,0 +1,6 @@
+.list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(48px, 7svh, 80px) var(--gutter); }
+.card { display: grid; gap: 12px; align-content: start; }
+.media { position: relative; aspect-ratio: 16 / 10; overflow: hidden; border-radius: 16px; background: var(--night-2); margin-bottom: 8px; }
+.name { font-family: var(--serif); font-size: var(--t-h3); font-weight: 400; letter-spacing: -0.005em; line-height: 1.25; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; margin-top: 6px; }
+@media (max-width: 860px) { .list { grid-template-columns: 1fr; } }

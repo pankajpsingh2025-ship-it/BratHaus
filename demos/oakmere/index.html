@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Oakmere Dental | Booked in seconds, any hour (concept build)</title>
+  <meta name="description" content="A concept build by BratHaus for a fictional dental clinic, with an AI receptionist that answers, triages and books patients at any hour." />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2318322a'/%3E%3Cpath d='M20 18c6-4 9 1 12 1s6-5 12-1c5 4 2 14-1 22-2 6-4 8-5 2-1-5-3-7-6-7s-5 2-6 7c-1 6-3 4-5-2-3-8-6-18-1-22z' fill='%23f6f3ee'/%3E%3C/svg%3E" />
+  <style>html,body{background:#f6f3ee;margin:0}</style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <a class="nav__brand" href="#top"><span class="nav__mark" aria-hidden="true"></span>Oakmere <span>Dental</span></a>
+    <nav aria-label="Main"><a href="#treatments">Treatments</a><a href="#how">How booking works</a><a href="#book">New patients</a></nav>
+    <a class="btn" href="#book">Book online</a>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero__copy">
+        <p class="kicker"><span class="dot" aria-hidden="true"></span> Open for bookings now</p>
+        <h1 id="hero-title">Booked in seconds. <em>Any hour.</em></h1>
+        <p class="lede">Ask our receptionist anything, any time. It answers straight away, finds you a slot and holds it, even at midnight.</p>
+        <ul class="hero__facts"><li>Emergency slots every day</li><li>New patients welcome</li><li>Evening appointments</li></ul>
+      </div>
+
+      <!-- the AI receptionist: scripted, but you can use it -->
+      <section class="rx" aria-labelledby="rx-title">
+        <header class="rx__head">
+          <span class="rx__avatar" aria-hidden="true">O</span>
+          <div><p id="rx-title" class="rx__title">Oakmere receptionist</p><p class="rx__status"><i aria-hidden="true"></i> Online · replies in seconds</p></div>
+          <span class="rx__badge">AI</span>
+        </header>
+        <div class="rx__log" aria-live="polite"></div>
+        <div class="rx__chips" role="group" aria-label="Suggested questions"></div>
+        <form class="rx__form">
+          <label class="sr-only" for="rx-input">Message the receptionist</label>
+          <input id="rx-input" autocomplete="off" maxlength="160" placeholder="Ask about appointments, prices, emergencies…" />
+          <button type="submit" aria-label="Send">→</button>
+        </form>
+        <p class="rx__note">Concept demo: scripted replies, nothing is booked.</p>
+      </section>
+    </section>
+
+    <section class="night" aria-labelledby="night-title">
+      <figure class="night__photo"><img src="/work/oakmere-hero.webp" alt="The Oakmere reception after hours, lights low, nobody at the desk." loading="lazy" /><figcaption><span class="dot" aria-hidden="true"></span> 23:15 · reception closed · receptionist online</figcaption></figure>
+      <div class="night__copy">
+        <p class="kicker">While the practice is closed</p>
+        <h2 id="night-title">Patients don't wait for <em>opening hours.</em></h2>
+        <p>Toothache starts at night. People search at lunch, on the train, at 2am. Our receptionist is there for every one of them, then hands the day's diary to the team in the morning.</p>
+      </div>
+      <ol class="night__log" aria-label="An example night">
+        <li><time>21:48</time><span>New patient</span><b>Check-up booked</b></li>
+        <li><time>23:15</time><span>Toothache</span><b>Triaged · emergency slot held</b></li>
+        <li><time>01:02</time><span>Question</span><b>Price list sent</b></li>
+        <li><time>06:40</time><span>Running late</span><b>Moved to 10:20</b></li>
+        <li><time>07:55</time><span>Morning</span><b>Diary handed to the team</b></li>
+      </ol>
+    </section>
+
+    <section class="treat" id="treatments" aria-labelledby="treat-title">
+      <header><p class="kicker">Treatments</p><h2 id="treat-title">Everything for a <em>healthy smile.</em></h2></header>
+      <ul class="treat__grid">
+        <li><h3>Check-ups</h3><p>A thorough look, an honest plan, no upselling.</p></li>
+        <li><h3>Hygiene</h3><p>Deep cleans with our hygienists, morning or evening.</p></li>
+        <li class="is-hot"><h3>Emergency</h3><p>Same-day slots kept free every day for pain and breaks.</p></li>
+        <li><h3>Whitening</h3><p>In-chair or at home, planned with you.</p></li>
+        <li><h3>Clear aligners</h3><p>Straighter teeth without metal braces.</p></li>
+        <li><h3>Implants</h3><p>Permanent replacements that look and feel like your own.</p></li>
+      </ul>
+    </section>
+
+    <section class="how" id="how" aria-labelledby="how-title">
+      <h2 id="how-title">How booking <em>works.</em></h2>
+      <ol class="how__steps">
+        <li><span>01</span><h3>It answers</h3><p>On the website, by text or on Instagram, in seconds.</p></li>
+        <li><span>02</span><h3>It triages</h3><p>Pain and breaks go straight to an emergency slot.</p></li>
+        <li><span>03</span><h3>It books</h3><p>Straight into the practice diary, with a confirmation.</p></li>
+        <li><span>04</span><h3>It follows up</h3><p>Reminders, recalls and a thank-you after the visit.</p></li>
+      </ol>
+    </section>
+
+    <section class="book" id="book" aria-labelledby="book-title">
+      <div>
+        <p class="kicker">New patients</p>
+        <h2 id="book-title">Join the <em>practice.</em></h2>
+        <p>Tell us a little about you and we'll find your first appointment.</p>
+      </div>
+      <form class="form" id="book-form" novalidate>
+        <label>Your name<input name="name" autocomplete="name" required /></label>
+        <label>Mobile<input name="phone" type="tel" autocomplete="tel" required /></label>
+        <label>I'd like<select name="what" required><option value="">Choose one</option><option>A check-up</option><option>A hygiene clean</option><option>An emergency appointment</option><option>To talk about treatment</option></select></label>
+        <button class="btn" type="submit">Find my appointment</button>
+        <p class="form__note" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="foot"><p class="nav__brand">Oakmere <span>Dental</span></p><p>Oakmere Dental is a fictional practice. This is a concept build by <a href="/" target="_top">BratHaus</a>; nothing here is medical advice.</p></footer>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

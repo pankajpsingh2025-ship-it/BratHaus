@@ -1,0 +1,7 @@
+.wrap { align-items: start; row-gap: 48px; }
+.side { grid-column: 1 / 6; display: grid; gap: 28px; }
+.promises { display: grid; gap: 6px; }
+.promises li::before { content: "— "; color: var(--accent); }
+.details { line-height: 1.8; user-select: text; }
+.form { grid-column: 7 / 13; }
+@media (max-width: 860px) { .side, .form { grid-column: 1 / -1; } }

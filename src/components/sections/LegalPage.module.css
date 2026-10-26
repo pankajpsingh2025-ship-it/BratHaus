@@ -1,0 +1,7 @@
+.prose { max-width: calc(68ch + var(--margin) * 2); display: grid; gap: 18px; }
+.prose h2 { margin-top: 28px; font-family: var(--serif); font-size: var(--t-h3); font-weight: 400; letter-spacing: -0.005em; line-height: 1.25; }
+.prose ul { display: grid; gap: 10px; padding-left: 0; }
+.prose li { position: relative; padding-left: 22px; }
+.prose li::before { content: ""; position: absolute; left: 0; top: 0.7em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.prose a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.prose b { font-weight: 500; }

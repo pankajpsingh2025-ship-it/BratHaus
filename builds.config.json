@@ -1,0 +1,52 @@
+{
+  "builds": [
+    {
+      "slug": "wren-ashby",
+      "name": "Wren & Ashby",
+      "sector": "Independent estate agent, Bath",
+      "kind": "Concept build",
+      "line": "A five-section estate agency site: scroll through the front door, walk the rooms, and drag the house through the day.",
+      "year": 2026,
+      "featured": true,
+      "wait": 3500,
+      "demo": "/demos/wren-ashby/",
+      "record": "http://127.0.0.1:5190/demos/wren-ashby/"
+    },
+    {
+      "slug": "mereway",
+      "name": "Mereway",
+      "sector": "Home insurance",
+      "kind": "Concept build",
+      "line": "A home insurer told through the weather: live rain, a dome that keeps the house dry, and fog you wipe off the glass.",
+      "year": 2026,
+      "featured": true,
+      "wait": 3500,
+      "demo": "/demos/mereway/",
+      "record": "http://127.0.0.1:5190/demos/mereway/"
+    },
+    {
+      "slug": "aurelith",
+      "name": "Aurelith",
+      "sector": "Fine jewellery atelier",
+      "kind": "Concept build",
+      "line": "A jewellery atelier with a real-time 3D gold ring and diamond that follows your scroll and catches the light.",
+      "year": 2026,
+      "featured": true,
+      "wait": 3500,
+      "demo": "/demos/aurelith/",
+      "record": "http://127.0.0.1:5190/demos/aurelith/"
+    },
+    {
+      "slug": "oakmere",
+      "name": "Oakmere Dental",
+      "sector": "Dental clinic",
+      "kind": "Concept build",
+      "line": "A dental clinic with an AI receptionist that answers, triages and books patients at any hour.",
+      "year": 2026,
+      "featured": true,
+      "wait": 3500,
+      "demo": "/demos/oakmere/",
+      "record": "http://127.0.0.1:5190/demos/oakmere/"
+    }
+  ]
+}

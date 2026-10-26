@@ -1,0 +1,5 @@
+.pre { position: fixed; inset: 0; z-index: 280; display: none; place-items: center; background: var(--night); color: var(--gold); }
+:global(html.is-preloading) .pre, .pre[data-on] { display: grid; }
+.logo { display: grid; place-items: center; transform-origin: 50% 50%; color: var(--gold); }
+.logo svg { overflow: visible; }
+.count { position: absolute; left: var(--margin); bottom: 32px; font-family: var(--mono); font-size: var(--t-label); letter-spacing: 0.12em; color: var(--mist); font-variant-numeric: tabular-nums; }

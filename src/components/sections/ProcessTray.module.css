@@ -1,0 +1,35 @@
+/* held for exactly as long as the cards need to travel */
+.hold { position: relative; height: calc(100svh + var(--travel, 1600px)); }
+.pin { position: sticky; top: 0; height: 100svh; display: grid; grid-template-rows: auto 1fr; gap: clamp(24px, 4svh, 40px); padding: calc(var(--header-h) + clamp(24px, 5svh, 56px)) 0 clamp(24px, 5svh, 56px); }
+.head { max-width: 1100px; }
+.tray {
+  position: relative; margin-inline: var(--margin); min-height: 0; overflow: hidden;
+  border-radius: 20px; background: var(--night-2);
+  box-shadow: inset 0 2px 24px rgba(0, 0, 0, 0.45), inset 0 0 0 1px rgba(243, 238, 230, 0.04);
+  display: flex; align-items: center;
+}
+.track { display: flex; align-items: stretch; gap: 24px; padding: 0 clamp(24px, 4vw, 56px); will-change: transform; }
+.card {
+  flex: none; width: 420px; height: min(480px, calc(100svh - var(--header-h) - 260px)); min-height: 340px;
+  display: grid; grid-template-rows: auto 1fr auto auto; gap: 12px; padding: 28px;
+  border-radius: 16px; background: var(--paper); color: var(--ink);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04), 0 26px 50px -26px rgba(0, 0, 0, 0.7);
+}
+.num { color: var(--gold-deep); }
+.art { width: 100%; max-width: 220px; height: auto; align-self: center; justify-self: center; overflow: visible; }
+.art path { fill: none; stroke: var(--gold-deep); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.2s var(--expo); }
+.on .art path { stroke-dashoffset: 0; }
+.on .art path:nth-child(2) { transition-delay: 0.08s; } .on .art path:nth-child(3) { transition-delay: 0.16s; } .on .art path:nth-child(4) { transition-delay: 0.24s; } .on .art path:nth-child(n + 5) { transition-delay: 0.32s; }
+.cardTitle { font-family: var(--serif); font-size: var(--t-h3); font-weight: 400; letter-spacing: -0.005em; line-height: 1.25; }
+.cardText { font-size: var(--t-body); line-height: 1.6; color: var(--ink-soft); }
+.light { background: #e9e3d9; box-shadow: inset 0 2px 18px rgba(21, 20, 18, 0.12), inset 0 0 0 1px rgba(21, 20, 18, 0.05); }
+.light .final { color: var(--ink); }
+.final { flex: none; width: min(560px, 80vw); display: grid; align-content: center; justify-items: start; gap: 28px; padding: 0 24px 0 32px; color: var(--ivory); }
+@media (max-width: 640px) {
+  .card { width: 78vw; padding: 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hold { height: auto; }
+  .pin { position: relative; height: auto; }
+  .tray { overflow-x: auto; padding-block: 32px; }
+}

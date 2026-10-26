@@ -1,0 +1,3 @@
+.sheet { overflow: clip; }
+.inner { position: relative; }
+.flat { position: relative; z-index: 2; }

@@ -1,0 +1,25 @@
+.footer {
+  position: relative; z-index: 3; color: var(--ivory); overflow: hidden;
+  /* a warm light from behind the mark, falling off across the night */
+  background: radial-gradient(70% 90% at 8% 0%, rgba(212, 175, 124, 0.16), rgba(212, 175, 124, 0) 62%), radial-gradient(60% 70% at 100% 100%, rgba(107, 127, 91, 0.1), rgba(107, 127, 91, 0) 60%), var(--night);
+}
+.inner { padding-top: clamp(96px, 16svh, 180px); padding-bottom: 32px; display: grid; gap: clamp(32px, 5svh, 56px); }
+.brand { display: flex; align-items: flex-end; gap: clamp(20px, 2.4vw, 36px); }
+/* the solid mark, with a soft band of light that passes across it once (a moving gradient, masked to the mark) */
+.mark { --sweep: -60%; position: relative; height: 120px; color: var(--gold); }
+.markSvg { height: 100%; width: auto; }
+.mark::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(105deg, transparent calc(var(--sweep) - 30%), rgba(255, 244, 222, 0.85) var(--sweep), transparent calc(var(--sweep) + 30%));
+  -webkit-mask: url("/brand/brathaus-mark-gold.svg") center / contain no-repeat; mask: url("/brand/brathaus-mark-gold.svg") center / contain no-repeat;
+  mix-blend-mode: screen;
+}
+.word { padding-bottom: 6px; font-family: var(--serif); font-size: var(--t-h2); font-weight: 400; letter-spacing: -0.015em; line-height: 1.1; color: var(--ivory); }
+.cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px var(--gutter); padding-top: 32px; border-top: 1px solid rgba(243, 238, 230, 0.14); }
+.cols ul { display: grid; gap: 8px; margin-top: 14px; font-size: var(--t-ui); font-weight: 400; line-height: 1.6; }
+.legal { font-size: var(--t-ui); font-weight: 400; line-height: 1.6; }
+@media (max-width: 720px) {
+  .mark { height: 88px; }
+  .cols { grid-template-columns: 1fr 1fr; }
+  .cols > :last-child { grid-column: 1 / -1; }
+}

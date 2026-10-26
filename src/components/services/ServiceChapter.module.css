@@ -1,0 +1,26 @@
+.chapter { padding-block: clamp(112px, 14vw, 200px); }
+.inner { align-items: center; row-gap: 56px; }
+.text { grid-column: 1 / 6; grid-row: 1; display: grid; gap: 24px; justify-items: start; }
+.text h2 { max-width: 14ch; }
+.text :global(.lead) { max-width: 44ch; }
+.visual { grid-column: 7 / 13; grid-row: 1; }
+.flip .text { grid-column: 8 / 13; }
+.flip .visual { grid-column: 1 / 7; }
+.block { display: grid; gap: 14px; width: 100%; padding-top: 22px; border-top: 1px solid var(--line); }
+.list { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 10px 24px; }
+.list li { display: flex; gap: 12px; align-items: baseline; }
+.list li::before { content: ""; flex: none; width: 5px; height: 5px; margin-bottom: 3px; border-radius: 50%; background: var(--accent); }
+.text :global(.btn) { margin-top: 8px; }
+@media (max-width: 1023px) {
+  .text, .flip .text, .visual, .flip .visual { grid-column: 1 / -1; }
+  .visual, .flip .visual { grid-row: 1; }
+  .text, .flip .text { grid-row: 2; }
+}
+@media (max-width: 560px) { .list { grid-template-columns: 1fr; } }
+
+@media (max-height: 520px) and (orientation: landscape) and (max-width: 1023px) {
+  .inner { grid-template-columns: 1fr 1fr; column-gap: 32px; align-items: start; }
+  .text, .flip .text { grid-column: 1; grid-row: 1; }
+  .visual, .flip .visual { grid-column: 2; grid-row: 1; position: sticky; top: calc(var(--header-h) + 16px); }
+}
+.blockTitle { color: var(--fg-soft); }

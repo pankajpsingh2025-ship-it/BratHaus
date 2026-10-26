@@ -1,0 +1,93 @@
+/* The home story. 640svh (520svh portrait) of scroll; two sticky layers share one 100svh stage:
+   .back  (z 0) under the fixed canvas (z 1): the H1 the phone stands in front of.
+   .front (z 2) over it: the text zone, the labels, the ring, "Skip the story" and the scroll cue.
+   The zones come in as CSS variables from zones.ts (--tx/--ty/--tw/--th text, --dx/--dy/--dw/--dh devices),
+   and the portrait layout by the same media test as zones.ts, so CSS and the 3D never disagree. */
+.story { position: relative; height: 640vh; height: 640svh; background: var(--night); }
+
+.back { position: sticky; top: 0; height: 100vh; height: 100svh; z-index: 0; overflow: hidden; }
+.glow { position: absolute; inset: 0; background: radial-gradient(46% 52% at 71% 52%, #1d1a15 0%, rgba(29, 26, 21, 0) 70%); }
+.fade { display: none; }
+
+/* the hero logo's soft glow (the mark itself is in the canvas, above it) */
+.logoGlow { position: absolute; border-radius: 50%; background: radial-gradient(closest-side, rgba(212, 175, 124, 0.22), rgba(212, 175, 124, 0)); }
+
+.front { position: sticky; top: 0; height: 100vh; height: 100svh; margin-top: -100vh; margin-top: -100svh; z-index: 2; overflow: hidden; pointer-events: none; }
+.front a, .front button { pointer-events: auto; }
+
+/* the hero: the words on the left (columns 1–7), vertically centred; the mark on the right */
+.hero {
+  position: absolute; left: var(--margin); top: var(--header-h); bottom: 0;
+  width: calc((100% - var(--margin) * 2) * 7 / 12 - var(--gutter));
+  display: grid; align-content: center; justify-items: start; gap: 28px;
+}
+.h1 { margin: 6px 0 4px; }
+.line { display: block; overflow: hidden; padding-bottom: 0.1em; margin-bottom: -0.1em; }
+.line > span { display: inline-block; }
+@media (min-width: 1024px) { .line > span { white-space: nowrap; } }
+
+/* the text zone: every chapter's words in the same place, one at a time */
+.textZone { position: absolute; left: var(--tx); top: var(--ty); width: var(--tw); height: var(--th); display: grid; }
+/* placed from the zones (JS): hidden until they exist, so it never shifts into place */
+.story:not([data-zoned]) .textZone, .story:not([data-zoned]) .labels { visibility: hidden; }
+.textZone > * { grid-area: 1 / 1; align-self: end; min-width: 0; }
+.lead { max-width: 44ch; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 28px; }
+.chapter { display: grid; gap: 16px; justify-items: start; visibility: hidden; opacity: 0; }
+.chapter h2 { max-width: 12ch; }
+.line2 { max-width: 38ch; }
+.finale { align-self: center; }
+.finale h2 { max-width: 14ch; }
+
+/* labels beside the devices (positioned by placeOverlays / projected each frame) */
+.labels { position: absolute; inset: 0; }
+.chip {
+  position: absolute; left: 0; top: 0; display: inline-flex; align-items: center; gap: 10px;
+  padding: 9px 16px; border-radius: 22px; border: 1px solid rgba(255, 255, 255, 0.14); background: rgba(255, 255, 255, 0.06);
+  color: var(--ivory); font-size: var(--t-ui); font-weight: 400; line-height: 1.3; white-space: nowrap;
+  visibility: hidden; opacity: 0;
+}
+.chip i { width: 6px; height: 6px; flex: none; border-radius: 50%; background: var(--gold); }
+.chipsLabel, .convo, .node { position: absolute; left: 0; top: 0; margin: 0; white-space: nowrap; visibility: hidden; opacity: 0; }
+.convo, .node { transform: translateX(-50%); }
+.node { color: var(--ivory); }
+.co { position: absolute; left: 0; top: 0; opacity: 0; transition: opacity 0.35s var(--expo); will-change: transform; }
+.co:global(.is-on) { opacity: 1; }
+.coIn { display: flex; flex-direction: column-reverse; align-items: center; transform: translate(-50%, -100%); color: var(--ivory); white-space: nowrap; }
+.coDown { flex-direction: column; transform: translate(-50%, 0); }
+.coDot { width: 6px; height: 6px; margin: -3px 0; border-radius: 50%; background: var(--gold); flex: none; }
+.coLine { width: 1px; height: 32px; background: var(--gold); transform-origin: bottom; }
+.coDown .coLine { transform-origin: top; }
+.coIn span { padding: 6px 0; }
+
+/* the one example label: bottom-right of the stage */
+.example { position: absolute; right: var(--margin); bottom: 28px; margin: 0; color: var(--mist); visibility: hidden; opacity: 0; }
+
+.foot { position: absolute; left: var(--margin); bottom: 22px; display: flex; align-items: center; gap: 28px; }
+.skip { padding: 6px 0; border: 0; background: none; color: var(--mist); }
+.skip:hover, .skip:focus-visible { color: var(--gold); }
+
+.scroll { position: absolute; right: var(--margin); bottom: 30px; margin: 0; display: flex; align-items: center; gap: 14px; color: var(--mist); }
+.scroll span { position: relative; width: 40px; height: 1px; background: rgba(243, 238, 230, 0.2); overflow: hidden; }
+.scroll i { position: absolute; inset: 0; background: var(--gold); transform-origin: left; transform: scaleX(0); }
+
+/* ---------- portrait: devices in the top 56%, the words beneath over a night gradient; the hero's mark in
+   the top 38% (30% on short phones). Anything that isn't ≥1024px wide AND at least 6:5, the same test
+   as zones.ts, in CSS so the first paint is already right (no layout shift when the zones arrive) ---------- */
+@media not all and (min-width: 1024px) and (min-aspect-ratio: 6/5) {
+  .story { height: 520vh; height: 520svh; }
+  .story .glow { background: radial-gradient(80% 40% at 50% 30%, #1d1a15 0%, rgba(29, 26, 21, 0) 70%); }
+  .story .fade { display: block; position: absolute; left: 0; right: 0; top: 48%; bottom: 0; background: linear-gradient(to bottom, rgba(14, 14, 13, 0), var(--night) 18%); }
+  .story .hero { top: calc(38% + 4px); bottom: auto; width: calc(100% - var(--margin) * 2); align-content: start; gap: 16px; }
+  .story .textZone > * { align-self: start; padding-top: 6px; }
+  .story .chapter { gap: 12px; }
+  .story .chapter h2 { max-width: none; }
+  .story .finale { align-self: start; }
+  .story .example { top: calc(var(--dy) + var(--dh) + 1px); bottom: auto; line-height: 14px; }
+  .story .foot { bottom: calc(4px + env(safe-area-inset-bottom, 0px)); }
+  .story .skip { padding: 4px 0; }
+  .story .scroll { display: none; }
+}
+@media not all and (min-width: 1024px) and (min-aspect-ratio: 6/5) and (max-height: 719px) {
+  .story .hero { top: calc(30% + 4px); }
+}

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mereway | Home insurance in plain English (concept build)</title>
+  <meta name="description" content="A concept build by BratHaus for a fictional home insurer that explains itself through the weather." />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230e1a2b'/%3E%3Cpath d='M12 36a20 20 0 0 1 40 0z' fill='%23e9b949'/%3E%3C/svg%3E" />
+  <style>html,body{background:#0e1a2b;margin:0}</style>
+  <script type="module" crossorigin src="/demos/mereway/assets/index-DCzusiTa.js"></script>
+  <link rel="stylesheet" crossorigin href="/demos/mereway/assets/index-CxvvTiSH.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <a class="nav__brand" href="#top"><svg viewBox="0 0 40 24" aria-hidden="true"><path d="M2 22a18 18 0 0 1 36 0z" /></svg>Mereway</a>
+    <nav aria-label="Main"><a href="#glass">Claims</a><a href="#cover">What's covered</a><a href="#claim">How it works</a></nav>
+    <a class="btn" href="#quote">Get a quote</a>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <canvas class="rain" aria-hidden="true"></canvas>
+      <div class="dome" aria-hidden="true">
+        <svg viewBox="0 0 400 220"><defs><radialGradient id="g" cx="50%" cy="100%" r="100%"><stop offset="0" stop-color="#e9b949" stop-opacity=".35" /><stop offset=".7" stop-color="#e9b949" stop-opacity=".08" /><stop offset="1" stop-color="#e9b949" stop-opacity="0" /></radialGradient></defs>
+          <path d="M10 210a190 190 0 0 1 380 0z" fill="url(#g)" /><path class="dome__rim" d="M10 210a190 190 0 0 1 380 0" />
+          <path class="dome__house" d="M150 210v-70l50-40 50 40v70zM185 210v-40h30v40" /><rect class="dome__win" x="160" y="150" width="18" height="18" /><rect class="dome__win" x="222" y="150" width="18" height="18" />
+        </svg>
+      </div>
+      <div class="hero__copy">
+        <p class="kicker">Home insurance</p>
+        <h1 id="hero-title">Weather happens. <em>You're covered.</em></h1>
+        <p class="lede">Home insurance that explains itself in plain English, and answers when it's pouring down.</p>
+        <p class="hero__cta"><a class="btn btn--sun" href="#quote">Get a quote</a><span class="hint">Move to keep the house dry</span></p>
+      </div>
+    </section>
+
+    <section class="glass" id="glass" aria-labelledby="glass-title">
+      <div class="glass__copy">
+        <p class="kicker">Claims in plain English</p>
+        <h2 id="glass-title">Wipe the glass. <em>See it clearly.</em></h2>
+        <p>Insurance hides behind fog. We don't. Drag across the window to clear it, the way every claim should feel.</p>
+      </div>
+      <figure class="glass__frame">
+        <img src="/work/mereway-hero.webp" alt="A gold umbrella standing in the rain on a dark wet floor." />
+        <canvas class="fog" aria-hidden="true"></canvas>
+        <figcaption>Drag to wipe</figcaption>
+      </figure>
+    </section>
+
+    <section class="cover" id="cover" aria-labelledby="cover-title">
+      <header><p class="kicker">What's covered</p><h2 id="cover-title">No small print. <em>Just print.</em></h2></header>
+      <ul class="cover__grid">
+        <li><span class="cover__i" aria-hidden="true">☂</span><h3>Storms</h3><p>Wind, rain and hail damage to your roof, walls and windows.</p></li>
+        <li><span class="cover__i" aria-hidden="true">≈</span><h3>Escape of water</h3><p>Burst pipes and leaks, including tracing where the water came from.</p></li>
+        <li><span class="cover__i" aria-hidden="true">⌂</span><h3>Theft</h3><p>Break-ins and the damage they leave, with a locksmith the same day.</p></li>
+        <li><span class="cover__i" aria-hidden="true">✳</span><h3>Accidents</h3><p>The paint tin, the dropped laptop, the football through the window.</p></li>
+      </ul>
+    </section>
+
+    <section class="claim" id="claim" aria-labelledby="claim-title">
+      <h2 id="claim-title">A claim in <em>three steps.</em></h2>
+      <ol class="claim__steps">
+        <li><span>01</span><h3>Tell us</h3><p>Photos and a few lines, any time of day or night.</p></li>
+        <li><span>02</span><h3>We call you</h3><p>A real person, who explains what happens next in plain English.</p></li>
+        <li><span>03</span><h3>It's put right</h3><p>Repairs booked, or the money paid. You always know where it stands.</p></li>
+      </ol>
+      <div class="claim__line" aria-hidden="true"><i></i></div>
+    </section>
+
+    <section class="quote" id="quote" aria-labelledby="quote-title">
+      <h2 id="quote-title">Get a <em>quote.</em></h2>
+      <form class="form" id="quote-form" novalidate>
+        <label>Postcode<input name="postcode" autocomplete="postal-code" required /></label>
+        <label>Your home<select name="type" required><option value="">Choose one</option><option>Flat</option><option>Terraced house</option><option>Semi-detached house</option><option>Detached house</option></select></label>
+        <button class="btn btn--sun" type="submit">See my price</button>
+        <p class="form__note" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="foot"><p class="nav__brand">Mereway</p><p>Mereway is a fictional brand. This is a concept build by <a href="/" target="_top">BratHaus</a>, not a real insurer.</p></footer>
+</body>
+</html>

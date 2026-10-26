@@ -1,0 +1,5 @@
+.stage { position: relative; }
+/* z 1: between the page background (and the hero headline, z 0) and every other piece of content (z 2) */
+.gl { position: fixed; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; contain: strict; }
+.html { position: absolute; inset: 0; overflow: hidden; }
+.gl canvas { display: block; }

@@ -1,0 +1,13 @@
+.ring {
+  display: flex; align-items: center; gap: 12px; padding: 6px 0;
+  border: 0; background: none; color: var(--ivory);
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.5s var(--expo), visibility 0.5s;
+}
+.ring[data-on] { opacity: 1; visibility: visible; }
+.ring:hover, .ring:focus-visible { color: var(--gold); }
+.ring svg { width: 24px; height: 24px; transform: rotate(-90deg); flex: none; }
+.bg { fill: none; stroke: rgba(243, 238, 230, 0.2); stroke-width: 1.5; }
+.fg { fill: none; stroke: var(--gold); stroke-width: 1.5; stroke-linecap: round; transition: stroke-dashoffset 0.2s linear; }
+/* portrait: in the device zone's top-right corner, beside the phone */
+.compact { position: absolute; right: var(--margin); top: calc(var(--dy, 72px) + 2px); gap: 8px; flex-direction: row-reverse; }
